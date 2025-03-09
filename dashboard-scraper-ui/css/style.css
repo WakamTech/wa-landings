@@ -1,0 +1,359 @@
+/* style.css */
+
+/* Variables CSS pour la charte graphique */
+:root {
+    --background-color: #f4f7fa;
+    --foreground-color: #333;
+    --primary-color: #007bff; /* Bleu Bootstrap - peut être ajusté */
+    --primary-foreground-color: #fff;
+    --secondary-color: #6c757d; /* Gris Bootstrap Secondary */
+    --secondary-foreground-color: #fff;
+    --card-background-color: #fff;
+    --card-foreground-color: var(--foreground-color);
+    --field-background-color: #e9ecef;
+    --field-foreground-color: var(--foreground-color);
+    --stars-color: #ffc107; /* Jaune pour les étoiles */
+
+    --font-family-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Police système propre */
+    --font-size-base: 1rem;
+    --line-height-base: 1.6;
+
+    --spacing-small: 0.5rem;
+    --spacing-medium: 1rem;
+    --spacing-large: 1.5rem;
+
+    --border-radius-small: 0.25rem;
+    --border-radius-medium: 0.5rem;
+
+    --box-shadow-small: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --box-shadow-medium: 0 4px 8px rgba(0, 0, 0, 0.15);
+
+    --transition-duration: 0.2s;
+    --transition-easing: ease-in-out;
+}
+
+/* Reset de base et styles globaux */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    color: var(--foreground-color);
+    background-color: var(--background-color);
+    -webkit-font-smoothing: antialiased; /* Meilleure lisibilité sur macOS/iOS */
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color var(--transition-duration) var(--transition-easing);
+}
+
+a:hover {
+    color: darken(var(--primary-color), 10%); /* Assombrir au hover - fonction CSS native non disponible, mais concept */
+    text-decoration: underline; /* Souligner au hover */
+}
+
+/* Styles pour les sections du dashboard */
+.dashboard-section {
+    background-color: var(--card-background-color);
+    color: var(--card-foreground-color);
+    border-radius: var(--border-radius-medium);
+    padding: var(--spacing-large);
+    margin-bottom: var(--spacing-large);
+    box-shadow: var(--box-shadow-medium);
+}
+
+.dashboard-section h2 {
+    margin-bottom: var(--spacing-medium);
+    font-size: 1.5rem;
+    color: var(--primary-color); /* Accent sur les titres de section */
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-small);
+}
+
+.section-content {
+    padding: var(--spacing-medium) 0;
+}
+
+/* Styles pour l'en-tête */
+.main-header {
+    background-color: var(--primary-color);
+    color: var(--primary-foreground-color);
+    padding: var(--spacing-medium) 0;
+    box-shadow: var(--box-shadow-small);
+    position: sticky; /* En-tête fixe au scroll */
+    top: 0;
+    z-index: 100; /* Pour être au-dessus du contenu */
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 var(--spacing-large);
+    max-width: 1200px; /* Largeur maximale du contenu */
+    margin: 0 auto;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-small);
+}
+
+.logo img {
+    height: 40px; /* Taille du logo */
+}
+
+.logo h1 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: var(--spacing-large);
+}
+
+.main-nav a {
+    color: var(--primary-foreground-color);
+    font-weight: 500;
+    padding: var(--spacing-small) var(--spacing-medium);
+    border-radius: var(--border-radius-small);
+    transition: background-color var(--transition-duration) var(--transition-easing);
+    display: block; /* Pour que le padding fonctionne correctement */
+}
+
+.main-nav a:hover {
+    background-color: rgba(255, 255, 255, 0.15); /* Légère transparence au hover */
+    text-decoration: none; /* Pas de soulignement au hover dans la nav */
+}
+
+
+/* Styles pour le formulaire */
+.form-group {
+    margin-bottom: var(--spacing-medium);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--spacing-small);
+    font-weight: 500;
+}
+
+.input-field, .select-field {
+    width: 100%;
+    padding: var(--spacing-small);
+    border: 1px solid #ced4da; /* Gris clair pour la bordure */
+    border-radius: var(--border-radius-small);
+    font-size: 1rem;
+    color: var(--foreground-color);
+    background-color: var(--field-background-color);
+    transition: border-color var(--transition-duration) var(--transition-easing), box-shadow var(--transition-duration) var(--transition-easing);
+}
+
+.input-field:focus, .select-field:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Ombre au focus - couleur primaire légère */
+}
+
+/* Styles spécifiques pour le champ de fichier */
+.file-upload-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.file-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0; /* Rendre l'input de fichier invisible */
+    cursor: pointer;
+}
+
+.file-upload-button {
+    display: inline-block;
+    padding: var(--spacing-small) var(--spacing-medium);
+    background-color: var(--secondary-color);
+    color: var(--secondary-foreground-color);
+    border: none;
+    border-radius: var(--border-radius-small);
+    cursor: pointer;
+    transition: background-color var(--transition-duration) var(--transition-easing);
+}
+
+.file-upload-button:hover {
+    background-color: darken(var(--secondary-color), 10%); /* Assombrir au hover - concept */
+}
+
+.file-name {
+    display: inline-block;
+    margin-left: var(--spacing-small);
+    vertical-align: middle;
+    font-style: italic;
+    color: #777; /* Gris plus léger pour le nom de fichier */
+}
+
+
+/* Styles pour les boutons */
+.primary-button, .secondary-button {
+    padding: var(--spacing-medium) var(--spacing-large);
+    border: none;
+    border-radius: var(--border-radius-small);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color var(--transition-duration) var(--transition-easing), transform var(--transition-duration) var(--transition-easing);
+    display: inline-flex; /* Pour aligner icône et texte */
+    align-items: center;
+    gap: var(--spacing-small);
+}
+
+.primary-button {
+    background-color: var(--primary-color);
+    color: var(--primary-foreground-color);
+}
+
+.primary-button:hover {
+    background-color: darken(var(--primary-color), 10%); /* Assombrir au hover - concept */
+    transform: scale(1.02); /* Léger effet de zoom au hover */
+}
+
+.secondary-button {
+    background-color: var(--secondary-color);
+    color: var(--secondary-foreground-color);
+}
+
+.secondary-button:hover {
+    background-color: darken(var(--secondary-color), 10%); /* Assombrir au hover - concept */
+    transform: scale(1.02);
+}
+
+/* Styles pour la section de statut */
+.status-box {
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius-small);
+    padding: var(--spacing-medium);
+    background-color: #f9f9f9;
+    font-family: monospace; /* Police monospace pour les logs */
+    white-space: pre-wrap; /* Gérer les retours à la ligne */
+    overflow-x: auto; /* Barre de défilement horizontale si besoin */
+    max-height: 200px; /* Hauteur maximale pour la boîte de statut */
+    overflow-y: auto; /* Barre de défilement verticale si besoin */
+}
+
+
+/* Styles pour la table de données (placeholder - sera stylisée par JS) */
+.data-table-container {
+    overflow-x: auto; /* Permettre le défilement horizontal sur petits écrans */
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: var(--spacing-medium);
+    border-radius: var(--border-radius-small);
+    overflow: hidden; /* Pour que le border-radius fonctionne sur la table */
+    box-shadow: var(--box-shadow-small);
+}
+
+.data-table th, .data-table td {
+    padding: var(--spacing-small);
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.data-table th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
+
+.data-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Lignes paires légèrement grisées */
+}
+
+/* Styles pour le footer */
+.main-footer {
+    background-color: #eee;
+    color: var(--secondary-color);
+    padding: var(--spacing-medium) 0;
+    text-align: center;
+    border-top: 1px solid #ddd;
+}
+
+.footer-content {
+    padding: 0 var(--spacing-large);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-content p {
+    margin-bottom: var(--spacing-small);
+}
+
+
+/* Media Queries pour la Responsivité */
+@media (max-width: 768px) { /* Pour les tablettes et petits écrans */
+    .header-content {
+        flex-direction: column; /* Logo et nav en colonne sur petits écrans */
+        text-align: center;
+    }
+
+    .logo {
+        margin-bottom: var(--spacing-medium);
+        justify-content: center; /* Centrer le logo sur petits écrans */
+    }
+
+    .main-nav ul {
+        flex-direction: column; /* Navigation en colonne sur petits écrans */
+        text-align: center;
+        gap: var(--spacing-small);
+    }
+
+    .main-nav li {
+        margin-bottom: var(--spacing-small);
+    }
+
+    .dashboard-section {
+        padding: var(--spacing-medium); /* Réduire le padding sur petits écrans */
+        margin-bottom: var(--spacing-medium);
+    }
+
+    .dashboard-section h2 {
+        font-size: 1.3rem; /* Réduire la taille des titres de section */
+    }
+
+    .section-content {
+        padding: var(--spacing-small) 0;
+    }
+
+    .export-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-small);
+    }
+
+    .primary-button, .secondary-button {
+        width: 100%; /* Boutons en pleine largeur sur petits écrans */
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) { /* Pour les très petits écrans (mobiles) */
+    .logo h1 {
+        font-size: 1.5rem; /* Réduire encore le titre du logo */
+    }
+}

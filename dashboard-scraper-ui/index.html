@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Maps Scraper UI - Dashboard Professionnel</title>
+    <meta name="description" content="Dashboard professionnel pour l'outil Google Maps Scraper. Interface utilisateur innovante et responsive.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon"> <!-- Optionnel : Favicon -->
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="assets/images/logo.png" alt="Logo de l'application">
+                <h1>Google Maps Scraper UI</h1>
+            </div>
+            <nav class="main-nav">
+                <!-- Menu innovant (pourrait être étendu si besoin) -->
+                <ul>
+                    <li><a href="#input-section"><i class="fas fa-upload"></i> Configuration</a></li>
+                    <li><a href="#status-section"><i class="fas fa-tasks"></i> Statut</a></li>
+                    <li><a href="#output-section"><i class="fas fa-table"></i> Résultats</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+
+        <section id="input-section" class="dashboard-section input-config-section">
+            <h2><i class="fas fa-cog"></i> Configuration de l'Entrée</h2>
+            <div class="section-content">
+                <form id="input-form">
+                    <div class="form-group">
+                        <label for="input-file">Fichier d'entrée (input.txt):</label>
+                        <div class="file-upload-wrapper">
+                            <input type="file" id="input-file" name="input-file" accept=".txt" class="input-field file-input">
+                            <label for="input-file" class="file-upload-button">Choisir un fichier</label>
+                            <span class="file-name">Aucun fichier sélectionné</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="max-listings">Maximum de Listings par Requête:</label>
+                        <input type="number" id="max-listings" name="max-listings" class="input-field" value="10" min="1">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="filter-criteria">Critères de Filtrage:</label>
+                        <select id="filter-criteria" name="filter-criteria" class="input-field select-field">
+                            <option value="no_filter">Aucun Filtre (Tous les Listings)</option>
+                            <option value="no_website">Pas de Site Web</option>
+                            <option value="low_reviews_with_website">Peu d'Avis avec Site Web</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="primary-button"><i class="fas fa-play"></i> Lancer le Scraping</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="status-section" class="dashboard-section status-log-section">
+            <h2><i class="fas fa-info-circle"></i> Statut et Logs</h2>
+            <div class="section-content">
+                <div id="status-display" class="status-box">
+                    <p>En attente de configuration et de lancement...</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="output-section" class="dashboard-section data-output-section">
+            <h2><i class="fas fa-table"></i> Données Scrapées</h2>
+            <div class="section-content">
+                <div id="data-table-container" class="data-table-container">
+                    <!-- Le tableau de données sera inséré ici par JavaScript -->
+                    <p>Les données scrapées apparaîtront ici une fois le processus terminé.</p>
+                </div>
+                <div class="export-buttons">
+                    <button id="export-csv" class="secondary-button"><i class="fas fa-file-csv"></i> Exporter en CSV</button>
+                    <button id="export-excel" class="secondary-button"><i class="fas fa-file-excel"></i> Exporter en Excel</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p>© 2024 Google Maps Scraper UI. Tous droits réservés.</p>
+            <p>Développé avec <i class="fas fa-heart" style="color: var(--primary-color);"></i> et passion.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <!-- <script src="js/data.js"></script>  Si vous séparez les données fictives -->
+</body>
+</html>
