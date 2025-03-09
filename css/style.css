@@ -1,0 +1,682 @@
+/* style.css */
+
+/* --------------------------------------- */
+/*  VARIABLES CSS (Charte Graphique)       */
+/* --------------------------------------- */
+:root {
+    /* Couleurs Principales */
+    --color-background: #f8f8f8;         /* Gris clair très doux pour le fond général */
+    --color-foreground: #333;             /* Gris foncé pour le texte principal */
+    --color-primary: #ff7f00;            /* Orange vif (couleur primaire) */
+    --color-primary-foreground: #fff;     /* Blanc pour le texte sur fond primaire */
+    --color-secondary: #fdd835;          /* Jaune doré (couleur secondaire) */
+    --color-secondary-foreground: #333;   /* Gris foncé pour le texte sur fond secondaire */
+    --color-card: #fff;                  /* Blanc pour les cartes/conteneurs */
+    --color-card-foreground: #333;        /* Gris foncé pour le texte dans les cartes */
+    --color-field: #e0e0e0;             /* Gris très clair pour les champs (inputs, sections claires) */
+    --color-field-foreground: #333;       /* Gris foncé pour le texte sur fond field */
+    --color-stars: #ffc107;              /* Jaune étoile pour les étoiles (avis, etc.) */
+
+    /* Typographie */
+    --font-family-base: 'Arial', sans-serif; /* Police de base (remplacez par une police Google Font si souhaité) */
+    --font-family-heading: 'Arial', sans-serif; /* Police pour les titres */
+    --font-size-base: 16px;
+    --font-size-h1: 3rem;
+    --font-size-h2: 2.2rem;
+    --font-size-h3: 1.8rem;
+    --line-height-base: 1.6;
+
+    /* Espacements */
+    --section-padding: 60px;
+    --grid-gap: 30px;
+    --border-radius-base: 8px;
+
+    /* Ombres */
+    --box-shadow-card: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* --------------------------------------- */
+/*  RESET et BASE STYLES                    */
+/* --------------------------------------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth; /* Pour le scroll fluide vers les ancres */
+}
+
+body {
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    color: var(--color-foreground);
+    background-color: var(--color-background);
+}
+
+a {
+    text-decoration: none;
+    color: inherit; /* Hérite de la couleur du texte parent */
+}
+
+ul, ol {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Empêche l'espace supplémentaire sous les images inline */
+}
+
+/* --------------------------------------- */
+/*  REUTILISABLE - Container, Sections, Boutons */
+/* --------------------------------------- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px; /* Marge latérale pour les petits écrans */
+}
+
+.section-padding {
+    padding: var(--section-padding) 0;
+}
+
+.section-title {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-h2);
+    margin-bottom: 40px;
+    text-align: center;
+    color: var(--color-foreground); /* Couleur par défaut, peut être surchargée */
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: var(--border-radius-base);
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border: none; /* Supprimer la bordure par défaut si nécessaire */
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-primary-foreground);
+}
+
+.btn-primary:hover {
+    background-color: #e67300; /* Assombrir légèrement au survol */
+}
+
+.btn-secondary {
+    background-color: var(--color-secondary);
+    color: var(--color-secondary-foreground);
+}
+
+.btn-secondary:hover {
+    background-color: #fccc00; /* Assombrir légèrement au survol */
+}
+
+.bg-secondary {
+    background-color: var(--color-secondary);
+}
+
+.bg-field {
+    background-color: var(--color-field);
+}
+
+.bg-primary {
+    background-color: var(--color-primary);
+}
+
+.text-secondary-foreground {
+    color: var(--color-secondary-foreground);
+}
+
+.text-field-foreground {
+    color: var(--color-field-foreground);
+}
+
+.text-primary-foreground {
+    color: var(--color-primary-foreground);
+}
+
+
+/* --------------------------------------- */
+/*  HEADER et NAVIGATION                  */
+/* --------------------------------------- */
+.header {
+    position: sticky; /* Menu fixe en haut */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-background);
+    z-index: 100; /* Pour être au-dessus des autres éléments */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-primary);
+}
+
+.nav {
+    /* Navigation pour les écrans larges (cachée par défaut sur mobile) */
+}
+
+.nav-list {
+    display: flex;
+    gap: 30px; /* Espacement entre les liens du menu */
+}
+
+.nav-link {
+    padding: 8px 12px;
+    border-radius: var(--border-radius-base);
+    transition: background-color 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background-color: rgba(0, 0, 0, 0.05); /* Légère couleur au survol/actif */
+}
+
+.burger-menu {
+    display: none; /* Caché par défaut sur les écrans larges */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.burger-bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--color-foreground);
+    margin: 5px auto;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* --------------------------------------- */
+/*  HERO SECTION                          */
+/* --------------------------------------- */
+.hero-section {
+    position: relative; /* Pour positionner le background absolute */
+    padding-top: 100px; /* Espace pour éviter que le contenu soit caché par le header fixe */
+    padding-bottom: var(--section-padding);
+    overflow: hidden; /* Pour gérer le débordement du background */
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/orange-bg.jpg'); /* Image de fond (à remplacer) */
+    background-size: cover;
+    background-position: center;
+    opacity: 0.1; /* Légère opacité pour ne pas distraire du contenu */
+    z-index: -1; /* En arrière-plan */
+}
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px; /* Espace entre le texte et l'image */
+}
+
+.hero-content {
+    max-width: 50%; /* Ajuster selon besoin */
+}
+
+.hero-title {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-h1);
+    line-height: 1.2;
+    color: var(--color-foreground);
+    margin-bottom: 20px;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: var(--color-foreground);
+    margin-bottom: 30px;
+}
+
+.hero-image-container {
+    max-width: 40%; /* Ajuster selon besoin */
+}
+
+.hero-image {
+    border-radius: var(--border-radius-base);
+    box-shadow: var(--box-shadow-card);
+}
+
+
+/* --------------------------------------- */
+/*  SECTION "A PROPOS"                    */
+/* --------------------------------------- */
+.about-section {
+    /* Styles spécifiques à la section "À Propos" */
+}
+
+.about-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.about-content {
+    max-width: 50%;
+}
+
+.about-text {
+    margin-bottom: 20px;
+}
+
+.about-image-container {
+    max-width: 40%;
+}
+
+.about-image {
+    border-radius: var(--border-radius-base);
+    box-shadow: var(--box-shadow-card);
+}
+
+
+/* --------------------------------------- */
+/*  SECTION "NOS PRODUITS"                 */
+/* --------------------------------------- */
+.products-section {
+    /* Styles spécifiques à la section "Nos Produits" */
+}
+
+.products-container {
+    /* Container pour les produits */
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Grille responsive */
+    gap: var(--grid-gap);
+}
+
+.product-card {
+    /* Styles pour chaque carte de produit (réutilisée comme "card") */
+}
+
+.card {
+    background-color: var(--color-card);
+    border-radius: var(--border-radius-base);
+    box-shadow: var(--box-shadow-card);
+    overflow: hidden; /* Empêche le contenu de dépasser les bords arrondis */
+    display: flex;
+    flex-direction: column; /* Pour que le contenu s'empile verticalement */
+}
+
+.card-image {
+    width: 100%;
+    height: 200px; /* Hauteur fixe pour les images (ajuster si besoin) */
+    object-fit: cover; /* Remplir l'espace en conservant le ratio */
+}
+
+.card-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espacement vertical entre les éléments du contenu */
+}
+
+.card-title {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-h3);
+    color: var(--color-card-foreground);
+    margin-bottom: 0; /* Supprimer la marge par défaut des titres */
+}
+
+.card-description {
+    color: var(--color-card-foreground);
+    margin-bottom: 15px;
+}
+
+.card-price {
+    font-weight: bold;
+    color: var(--color-primary);
+}
+
+.card-button {
+    margin-top: auto; /* Pousser le bouton vers le bas */
+    align-self: flex-start; /* Aligner le bouton à gauche (ou 'center' si souhaité) */
+}
+
+
+/* --------------------------------------- */
+/*  SECTION "TEMOIGNAGES"                  */
+/* --------------------------------------- */
+.testimonials-section {
+    /* Styles spécifiques à la section "Témoignages" */
+}
+
+.testimonials-container {
+    /* Container pour les témoignages */
+}
+
+.testimonials-slider {
+    /* Pour le slider (pas implémenté ici, juste un exemple statique) */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--grid-gap);
+}
+
+.testimonial-slide {
+    /* Styles pour chaque slide (ici, carte de témoignage) */
+}
+
+.testimonial-card {
+    /* Réutilise le style "card" */
+    padding: 30px;
+    text-align: center;
+}
+
+.testimonial-text {
+    font-style: italic;
+    margin-bottom: 20px;
+    color: var(--color-card-foreground);
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.testimonial-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.testimonial-name {
+    font-weight: bold;
+    color: var(--color-card-foreground);
+}
+
+
+/* --------------------------------------- */
+/*  SECTION "CONTACT"                     */
+/* --------------------------------------- */
+.contact-section {
+    /* Styles spécifiques à la section "Contact" */
+}
+
+.contact-container {
+    text-align: center;
+}
+
+.contact-description {
+    margin-bottom: 40px;
+    color: var(--color-field-foreground);
+}
+
+.contact-details {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: var(--color-primary);
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-link {
+    font-size: 1.8rem;
+    color: var(--color-field-foreground);
+    transition: color 0.3s ease;
+}
+
+.social-link:hover {
+    color: var(--color-primary);
+}
+
+
+/* --------------------------------------- */
+/*  FOOTER                                */
+/* --------------------------------------- */
+.footer {
+    padding: 30px 0;
+    color: var(--color-primary-foreground);
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-text {
+    font-size: 0.9rem;
+}
+
+.footer-nav-list {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-nav-link {
+    font-size: 0.9rem;
+    color: var(--color-primary-foreground);
+    transition: color 0.3s ease;
+}
+
+.footer-nav-link:hover {
+    color: rgba(255, 255, 255, 0.8); /* Légèrement plus clair au survol */
+}
+
+
+/* --------------------------------------- */
+/*  MEDIA QUERIES (Responsive Design)      */
+/* --------------------------------------- */
+
+/* Petits écrans (téléphones, moins de 768px) */
+@media (max-width: 767px) {
+    .container {
+        padding: 0 15px; /* Réduire la marge latérale sur mobile */
+    }
+
+    .section-padding {
+        padding: 40px 0; /* Réduire le padding vertical sur mobile */
+    }
+
+    .section-title {
+        font-size: var(--font-size-h3); /* Titres plus petits sur mobile */
+        margin-bottom: 30px;
+    }
+
+    .header-container {
+        padding: 15px;
+    }
+
+    .nav {
+        display: none; /* Cacher la nav sur grand écran par défaut sur mobile */
+        position: absolute;
+        top: 100%; /* Sous le header */
+        left: 0;
+        width: 100%;
+        background-color: var(--color-background);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        text-align: center;
+    }
+
+    .nav.active {
+        display: block; /* Afficher le menu quand la classe 'active' est ajoutée par JS */
+    }
+
+    .nav-list {
+        flex-direction: column; /* Menu vertical sur mobile */
+        gap: 15px;
+    }
+
+    .burger-menu {
+        display: block; /* Afficher le burger menu sur mobile */
+    }
+
+    .hero-container {
+        flex-direction: column-reverse; /* Inverser l'ordre image/texte sur mobile */
+        text-align: center;
+    }
+
+    .hero-content {
+        max-width: 100%; /* Pleine largeur sur mobile */
+        margin-top: 30px; /* Espace entre l'image et le texte */
+    }
+
+    .hero-title {
+        font-size: var(--font-size-h2); /* Titre hero plus petit sur mobile */
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .hero-image-container {
+        max-width: 80%; /* Image hero moins large sur mobile */
+        margin: 0 auto; /* Centrer l'image */
+    }
+
+    .about-container {
+        flex-direction: column; /* Empiler image/texte sur mobile */
+        text-align: center;
+    }
+
+    .about-content {
+        max-width: 100%;
+        margin-top: 30px;
+    }
+
+    .about-image-container {
+        max-width: 80%;
+        margin: 0 auto;
+    }
+
+    .contact-details {
+        flex-direction: column; /* Empiler les infos de contact sur mobile */
+        gap: 30px;
+    }
+
+    .footer-container {
+        flex-direction: column; /* Empiler texte et nav footer sur mobile */
+        text-align: center;
+        gap: 20px;
+    }
+
+    .footer-nav-list {
+        flex-direction: column; /* Nav footer verticale sur mobile */
+        text-align: center;
+    }
+}
+
+/* Tablettes (768px à 991px) - Ajustements si nécessaire */
+@media (min-width: 768px) and (max-width: 991px) {
+    .hero-container,
+    .about-container {
+        gap: 30px; /* Réduire l'écart entre les éléments des sections */
+    }
+
+    .hero-content,
+    .about-content {
+        max-width: 60%; /* Légèrement plus large que sur desktop, mais pas pleine largeur */
+    }
+
+    .hero-image-container,
+    .about-image-container {
+        max-width: 35%; /* Légèrement plus petit que sur desktop */
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Colonnes plus étroites sur tablette */
+    }
+
+    .contact-details {
+        gap: 30px; /* Réduire l'écart entre les infos de contact */
+    }
+}
+
+/* Grands écrans (992px et plus) - Principalement pour les ajustements mineurs */
+@media (min-width: 992px) {
+    /* Ajustements spécifiques aux grands écrans si besoin */
+}
+
+/* style.css - Animations Fade-In */
+
+.hero-content,
+.about-content,
+.products-section,
+.testimonials-section,
+.contact-section {
+    opacity: 0;
+    transform: translateY(50px); /* Commence un peu en dessous */
+    transition: opacity 1s ease, transform 1s ease; /* Animation douce */
+}
+
+.slide-in {
+    opacity: 1;
+    transform: translateY(0); /* Remonte à sa position normale */
+}
+
+/* Optionnel : Animation du burger menu (si souhaité) */
+.burger-menu.is-active .burger-bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.burger-menu.is-active .burger-bar:nth-child(2) {
+    opacity: 0;
+}
+
+.burger-menu.is-active .burger-bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
