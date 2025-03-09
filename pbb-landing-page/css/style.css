@@ -1,0 +1,480 @@
+/* CSS Variables pour la Charte Graphique */
+:root {
+    --color-background: #fefefe; /* Off-white */
+    --color-foreground: #333;      /* Dark grey */
+    --color-primary: #ff7f50;     /* Corail/Orange mangue */
+    --color-primary-foreground: #fff;
+    --color-secondary: #a8e6cf;   /* Vert clair complémentaire */
+    --color-secondary-foreground: #333;
+    --color-card: #fff;          /* Blanc pour les cartes */
+    --color-card-foreground: #333;
+    --color-field: #f2f2f2;       /* Gris clair pour les champs */
+    --color-field-foreground: #333;
+    --color-stars: #ffc107;      /* Jaune doré pour les étoiles (si besoin) */
+
+    --font-family-primary: 'Arial', sans-serif; /* Font principale */
+    --font-family-secondary: 'Georgia', serif; /* Font secondaire (pour titres, optionnel) */
+
+    --font-size-base: 16px;
+    --font-size-h1: 3rem;
+    --font-size-h2: 2.2rem;
+    --font-size-h3: 1.8rem;
+    --font-size-p: 1rem;
+
+    --spacing-section: 80px 0;
+    --spacing-container: 20px;
+
+    --border-radius-btn: 5px;
+    --border-radius-card: 8px;
+
+    --transition-duration: 0.3s;
+}
+
+/* Reset CSS (pour une base propre) */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family-primary);
+    color: var(--color-foreground);
+    background-color: var(--color-background);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased; /* Amélioration du rendu des fonts sur Webkit */
+    -moz-osx-font-smoothing: grayscale; /* Amélioration du rendu des fonts sur Firefox macOS */
+}
+
+/* Typographie Globale */
+h1, h2, h3 {
+    font-family: var(--font-family-secondary); /* Optionnel : font différente pour les titres */
+    line-height: 1.2;
+    margin-bottom: 0.5em;
+    color: var(--color-primary); /* Titres en couleur primaire */
+}
+
+h1 { font-size: var(--font-size-h1); }
+h2 { font-size: var(--font-size-h2); }
+h3 { font-size: var(--font-size-h3); }
+p { font-size: var(--font-size-p); margin-bottom: 1em; }
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color var(--transition-duration);
+}
+
+a:hover {
+    color: darken(var(--color-primary), 10%); /* Assombrir la couleur au hover */
+}
+
+/* Structure Générale */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-container);
+}
+
+.section {
+    padding: var(--spacing-section);
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.bg-secondary {
+    background-color: var(--color-secondary);
+}
+
+.bg-card {
+    background-color: var(--color-card);
+}
+
+/* Boutons */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: var(--border-radius-btn);
+    font-size: var(--font-size-p);
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color var(--transition-duration), color var(--transition-duration);
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-primary-foreground);
+}
+
+.btn-primary:hover {
+    background-color: darken(var(--color-primary), 10%);
+}
+
+/* Header & Navigation */
+header {
+    background-color: var(--color-background);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Légère ombre */
+    position: sticky; /* Menu sticky */
+    top: 0;
+    z-index: 100; /* Assurer que le menu est au-dessus des autres éléments */
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px var(--spacing-container);
+}
+
+.logo img {
+    max-height: 50px; /* Ajuster la taille du logo */
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.menu li a {
+    display: block;
+    padding: 10px 0;
+    font-weight: 500;
+}
+
+/* Hero Section */
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-section);
+}
+
+.hero-content {
+    flex: 1;
+    padding-right: 40px;
+}
+
+.hero-tagline {
+    font-size: 1.2rem;
+    color: lighten(var(--color-foreground), 20%); /* Couleur plus claire pour la tagline */
+    margin-bottom: 2em;
+}
+
+.hero-image {
+    flex: 1;
+    text-align: center; /* Centrer l'image */
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius-card);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1); /* Ombre sur l'image */
+}
+
+/* À Propos Section */
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: center;
+}
+
+.about-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius-card);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Produits Section */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Grille responsive */
+    gap: 30px;
+}
+
+.product-card {
+    background-color: var(--color-card);
+    border-radius: var(--border-radius-card);
+    padding: 20px;
+    text-align: center;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05); /* Ombre légère */
+    transition: transform var(--transition-duration); /* Animation au survol */
+}
+
+.product-card:hover {
+    transform: translateY(-5px); /* Léger décalage vers le haut au survol */
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius-card);
+    margin-bottom: 15px;
+}
+
+.product-card h3 {
+    margin-bottom: 10px;
+    color: var(--color-foreground);
+}
+
+/* Avantages Section */
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.benefit-card {
+    text-align: center;
+    padding: 20px;
+}
+
+.benefit-card img {
+    max-width: 80px; /* Ajuster la taille des icônes */
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.benefit-card h3 {
+    margin-bottom: 10px;
+    color: var(--color-foreground);
+}
+
+/* Contact Section */
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-form p {
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius-btn);
+    font-size: var(--font-size-p);
+    font-family: var(--font-family-primary);
+    background-color: var(--color-field); /* Couleur de fond des champs */
+    color: var(--color-field-foreground); /* Couleur du texte dans les champs */
+}
+
+.form-group textarea {
+    resize: vertical; /* Autoriser le redimensionnement vertical */
+}
+
+.form-message {
+    margin-top: 15px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.form-message.success {
+    color: green;
+}
+
+.form-message.error {
+    color: red;
+}
+
+
+/* Footer */
+footer {
+    background-color: var(--color-foreground); /* Footer en couleur foreground (foncée) */
+    color: var(--color-background);       /* Texte du footer en couleur background (claire) */
+    padding: 40px var(--spacing-container);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Permettre aux éléments de passer à la ligne sur petit écran */
+    gap: 30px;
+}
+
+.footer-logo img {
+    max-height: 40px; /* Ajuster la taille du logo du footer */
+    filter: brightness(0) invert(1); /* Inverser les couleurs du logo pour le fond foncé */
+}
+
+.footer-info p, .footer-info a {
+    color: var(--color-background); /* Assurer que le texte et les liens du footer sont clairs */
+}
+
+.footer-social {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-social img {
+    height: 25px; /* Ajuster la taille des icônes sociales */
+    filter: brightness(0) invert(1); /* Inverser les couleurs des icônes sociales */
+    opacity: 1; /* Légère opacité */
+    transition: opacity var(--transition-duration);
+}
+
+.footer-social img:hover {
+    opacity: 1;
+}
+
+/* Menu Burger (Mobile) */
+.burger {
+    display: none; /* Caché par défaut sur grand écran */
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--color-foreground);
+    margin: 5px 0;
+    transition: transform var(--transition-duration), opacity var(--transition-duration);
+}
+
+/* Styles pour le menu burger ouvert (ajoutés par JS) */
+.burger.active .bar:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.burger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.burger.active .bar:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) { /* Tablette et écrans plus petits */
+    .hero-section {
+        flex-direction: column; /* Empiler le contenu et l'image en mobile */
+        text-align: center; /* Centrer le texte en mobile */
+    }
+
+    .hero-content {
+        padding-right: 0;
+        margin-bottom: 30px; /* Espace entre le texte et l'image en mobile */
+    }
+
+    .about-content {
+        grid-template-columns: 1fr; /* Empiler image et texte en mobile */
+        text-align: center; /* Centrer le texte en mobile */
+    }
+
+    .about-image {
+        margin-bottom: 30px; /* Espace entre l'image et le texte en mobile */
+    }
+
+    .footer-content {
+        flex-direction: column; /* Empiler les éléments du footer en mobile */
+        text-align: center; /* Centrer le texte du footer en mobile */
+    }
+
+    .footer-info, .footer-social {
+        margin-bottom: 20px; /* Espacement entre les blocs du footer en mobile */
+    }
+}
+
+@media (max-width: 768px) { /* Mobile */
+    .menu {
+        display: none; /* Cacher le menu principal en mobile */
+    }
+
+    .burger {
+        display: block; /* Afficher le burger menu en mobile */
+    }
+
+    .navbar {
+        padding: 15px var(--spacing-container); /* Ajuster le padding du navbar mobile */
+    }
+
+    .menu.active { /* Menu burger ouvert */
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%; /* Sous le header */
+        left: 0;
+        width: 100%;
+        background-color: var(--color-background);
+        padding: 20px var(--spacing-container);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* Ombre pour le menu déroulant */
+        z-index: 99; /* Juste en dessous du header */
+    }
+
+    .menu.active li {
+        margin-bottom: 15px;
+    }
+
+    .menu.active li a {
+        padding: 10px;
+        display: block;
+        border-radius: var(--border-radius-btn);
+        transition: background-color var(--transition-duration);
+    }
+
+    .menu.active li a:hover {
+        background-color: rgba(0, 0, 0, 0.05); /* Léger background au hover dans le menu burger */
+    }
+
+    h1 { font-size: 2.5rem; } /* Réduire la taille du H1 en mobile */
+    h2 { font-size: 2rem; }   /* Réduire la taille du H2 en mobile */
+    h3 { font-size: 1.6rem; }   /* Réduire la taille du H3 en mobile */
+}
+
+/* Animations au Scroll (Classe .animate-in ajoutée par JS) */
+.section {
+    opacity: 0;
+    transform: translateY(30px); /* Légèrement décalé vers le bas initialement */
+    transition: opacity 1s ease-out, transform 1s ease-out; /* Animation douce */
+}
+
+.section.animate-in {
+    opacity: 1;
+    transform: translateY(0); /* Remonter à sa position normale */
+}
+
+/* Animations supplémentaires (exemples, à adapter/ajouter selon vos besoins) */
+
+/* Effet de survol sur les cartes de produits */
+.product-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Effet de pulsation sur les boutons (subtil) */
+.btn-primary {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05); /* Légèrement agrandir au survol */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}

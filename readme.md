@@ -52,4 +52,4 @@ il s'agit de faire un travail professionnel, digne du nom,
 ----
 appplication
 ----
-un landing page qui met en avant, OrangeB, une entreprise de vente de jus d'orange situé au beni  à  Cotonou
+un landing page qui met en avant, PBB, une entreprise de vente de jus de mangue situé au benin  à  Cotonou
